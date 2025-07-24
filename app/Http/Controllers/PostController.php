@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
+
 class PostController extends Controller
 {
     /**
@@ -11,7 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with('user')->get();
         return view('posts.index',compact('posts'));
     }
 
@@ -20,7 +22,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $users = User::all();
+        return view('posts.create',compact('users'));
     }
 
     /**
@@ -31,7 +34,7 @@ class PostController extends Controller
             Post::create([
                 'title' => $request->input('title'),
                 'description' => $request->input('description'),
-                'Author' => $request->input('Author')
+                'user_id' => $request->input('user_id')
             ]);
 
             return to_route('posts.index');
@@ -43,8 +46,9 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        $posts = Post::all();
-        $post = collect($posts)->firstWhere('id',$id);
+        // $posts = Post::all();
+        // $post = collect($posts)->firstWhere('id',$id);
+        $post = Post::findOrFail($id);
         return view('posts.show',compact('post'));
     }
 
@@ -53,8 +57,9 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        $posts = Post::all();
-        $post = collect($posts)->firstWhere('id',$id);
+        // $posts = Post::all();
+        // $post = collect($posts)->firstWhere('id',$id);
+        $post = Post::findOrFail($id);
         return view('posts.edit',compact('post'));
     }
 

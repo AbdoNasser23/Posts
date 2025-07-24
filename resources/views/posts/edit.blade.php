@@ -17,8 +17,9 @@ Edit Post
             <textarea class="form-control" id="description" name="description" rows="3" required>{{ $post->description }}</textarea>
         </div>
         <div class="mb-3">
-            <label for="Author" class="form-label">Author</label>
-            <input type="text" class="form-control" id="Author" name="Author" value="{{ $post->Author }}" required>
+            <select name="user_id" id="user_id" class="form-control">
+                                <option value="{{$post->user_id}}">{{$post->user->name}}</option>
+                            </select>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
         <a href="{{ route('posts.index') }}" class="btn btn-secondary">Cancel</a>

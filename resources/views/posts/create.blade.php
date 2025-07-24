@@ -24,15 +24,18 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="Author" class="form-label">Author</label>
-                            <input type="text" class="form-control" id="Author" name="Author" required>
+                            <label for="user_id" class="form-label">Author</label>
+                            <select name="user_id" id="user_id" class="form-control" required>
+                                <option value="">-- Name --</option>
+                                @foreach ($users as $user)
+                                <option value="{{$user->id}}">{{$user->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="d-flex justify-content-end gap-2">
                             <a href="{{ route('posts.index') }}" class="btn btn-secondary">
-                                <i class="fas fa-ti
-
-                                mes"></i> Cancel
+                                <i class="fas fa-times"></i> Cancel
                             </a>
                             <button type="submit" class="btn btn-primary">
                                 <i class="fas fa-save"></i> Save
@@ -44,4 +47,5 @@
         </div>
     </div>
 </div>
+
 @endsection

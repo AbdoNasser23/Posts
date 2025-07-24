@@ -12,7 +12,7 @@ View Post
             <h5 class="card-title">{{ $post->title }}</h5>
             <p class="card-text">{{ $post->description }}</p>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>Author:</strong> {{ $post->Author }}</li>
+                <li class="list-group-item"><strong>Author:</strong> {{ $post->user->name }}</li>
                 <li class="list-group-item"><strong>Created at:</strong> {{ $post->created_at }}</li>
                 <li class="list-group-item"><strong>Updated at:</strong> {{ $post->updated_at }}</li>
             </ul>
